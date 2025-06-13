@@ -1,0 +1,23 @@
+{
+    "key1": "value1",
+    "key2": "value2",
+    "key3": "value3",
+    "key4": "value4",
+    "array1": [ "element1-1", "element1-2", {"test-different": false}, "equal", {"equal":{"different": 2}}],
+    "object1": {
+        "nestedKey1": "nestedValue1",
+        "nestedKey2": "nestedValue2"
+    },
+    "object2": {
+        "nestedKey1": "nestedValue1",
+        "nestedKey2": "nestedValue2",
+        "nestedObject1": {
+            "deepKey1": "deepValue1",
+            "deepKey2": "deepValue2",
+            "nestedObject2": {
+                "deepKey3": "deepValue3",
+                "deepKey4": {}
+            }
+        }
+    }
+}
