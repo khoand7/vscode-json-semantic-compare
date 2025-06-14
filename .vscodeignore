@@ -1,0 +1,14 @@
+# Exclude test folders
+test/**
+src/test/**
+coverage/**
+.vscode/
+.git/
+.gitignore
+.github/
+node_modules/
+*.map
+*.ts
+tsconfig.json
+.vscodeignore
+*.log
