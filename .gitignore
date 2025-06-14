@@ -25,4 +25,5 @@ yarn-error.log*
 .DS_Store
 
 # Coverage directory
-coverage/
+coverage/**
+.nyc_output/**

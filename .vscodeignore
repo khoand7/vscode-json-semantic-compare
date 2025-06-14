@@ -18,3 +18,5 @@ dist/test/**
 *.properties
 readme.md
 .scannerwork
+.nyc_output/**
+coverage/**
