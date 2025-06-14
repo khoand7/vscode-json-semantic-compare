@@ -1,5 +1,5 @@
 {
-  "name": "vscode-json-semantic-compare",
+  "name": "vscode-json-semantic-compare-knd",
   "displayName": "JSON Semantic Compare",
   "description": "A Visual Studio Code extension to compare JSON files semantically.",
   "version": "0.0.1",
@@ -20,12 +20,12 @@
     ],
     "menus": {
       "explorer/context": [
-          {
-              "command": "jsonSemanticCompare.compareJson",
-              "title": "Compare Selected JSON Files",
-              "when": "resourceLangId == json",
-              "group": "navigation"
-          }
+        {
+          "command": "jsonSemanticCompare.compareJson",
+          "title": "Compare Selected JSON Files",
+          "when": "resourceLangId == json",
+          "group": "navigation"
+        }
       ]
     }
   },
@@ -37,9 +37,10 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
+    "@vscode/vsce": "^3.5.0",
     "ts-loader": "^8.0.0",
     "typescript": "^4.0.0",
-    "vscode": "^1.1.37",
+    "vscode": "^1.1.34",
     "webpack": "^5.0.0",
     "webpack-cli": "^4.0.0"
   }
