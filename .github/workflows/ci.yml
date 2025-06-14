@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build extension
-        run: npm run build
+        run: npm run compile
 
       - name: Install VSCE
         run: npm install -g @vscode/vsce
