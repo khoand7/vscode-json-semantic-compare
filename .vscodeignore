@@ -1,5 +1,6 @@
 # Exclude test folders
 test/**
+src/**
 src/test/**
 coverage/**
 .vscode/
@@ -12,3 +13,8 @@ node_modules/
 tsconfig.json
 .vscodeignore
 *.log
+test-files/**
+dist/test/**
+*.properties
+readme.md
+.scannerwork
