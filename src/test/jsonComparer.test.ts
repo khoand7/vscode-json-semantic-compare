@@ -5,6 +5,33 @@ const { compareObjects } = require('../utils/jsonComparer');
 const { JsonDiffType } = require('../types');
 
 describe('JSONComparer', () => {
+    // both objects are null
+    it('should return no differences for two null objects', () => {
+        const json1 = null;
+        const json2 = null;
+        const result = compareObjects(json1, json2);
+        assert.deepStrictEqual(result.differences, []);
+    });
+    // one object is null
+    it('should detect a difference when one object is null', () => {
+        const json1 = null;
+        const json2 = { "name": "John" };
+        const result = compareObjects(json1, json2);
+        assert.deepStrictEqual(result.differences, [{ "path": "", "type": JsonDiffType.Added }]);
+    });
+    it('should detect a difference when the other object is null', () => {
+        const json1 = { "name": "John" };
+        const json2 = null;
+        const result = compareObjects(json1, json2);
+        assert.deepStrictEqual(result.differences, [{ "path": "", "type": JsonDiffType.Removed }]);
+    });
+    // both objects are empty
+    it('should return no differences for two empty objects', () => {
+        const json1 = {};
+        const json2 = {};
+        const result = compareObjects(json1, json2);
+        assert.deepStrictEqual(result.differences, []);
+    });
     // use test data from test-files folder
     it('should compare two identical JSON objects', () => {
         const json1 = { "name": "John", "age": 30, "city": "New York" };
@@ -100,6 +127,42 @@ describe('JSONComparer', () => {
         const json2 = { "user": { "city": "New York", "age": 30, "name": "John" } };
         const result = compareObjects(json1, json2);
         assert.deepStrictEqual(result.differences, []);
-    }
-    );
+    });
+    // Test for objects in arrays
+    it('should compare objects in arrays', () => {
+        const json1 = { "users": [{ "name": "John", "age": 30 }, { "name": "Jane", "age": 25 }] };
+        const json2 = { "users": [{ "name": "John", "age": 31 }, { "name": "Jane", "age": 25 }] };
+        const result = compareObjects(json1, json2);
+        assert.deepStrictEqual(result.differences, [
+            { "path": "users[0].age", "type": JsonDiffType.Modified, "leftValue": 30, "rightValue": 31 }
+        ]);
+    });
+    // Test for objects in arrays and array is root object
+    it('should compare arrays as root objects', () => {     
+        const json1 = [{ "name": "John", "age": 30 }, { "name": "Jane", "age": 25 }];
+        const json2 = [{ "name": "John", "age": 31 }, { "name": "Jane", "age": 25 }];
+        const result = compareObjects(json1, json2);
+        assert.deepStrictEqual(result.differences, [
+            { "path": "[0].age", "type": JsonDiffType.Modified, "leftValue": 30, "rightValue": 31 }
+        ]);
+    });
+    // Test for keys in the second object that are not in the first
+    it('should detect keys in the second object that are not in the first', () => {
+        const json1 = { "name": "John", "age": 30 };
+        const json2 = { "name": "John", "age": 30, "city": "New York" };
+        const result = compareObjects(json1, json2);
+        assert.deepStrictEqual(result.differences, [{ "path": "city", "type": JsonDiffType.Added }]);
+    });
+    it('should detect keys in the second object that are not in the first', () => {
+        const json1 = { "name": "John", "age": 30 };
+        const json2 = [ "name", "age" ];
+        const result = compareObjects(json1, json2);
+        assert.deepStrictEqual(result.differences, [
+            { "path": "name", "type": JsonDiffType.Removed },
+            { "path": "age", "type": JsonDiffType.Removed },
+            { "path": "0", "type": JsonDiffType.Added }, // TODO: it should be path: ""
+            { "path": "1", "type": JsonDiffType.Added }
+        ]);
+    });
+    
 });
