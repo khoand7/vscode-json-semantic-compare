@@ -10,7 +10,7 @@ export function compareObjects(obj1: any, obj2: any): JsonComparisonResult {
         }
         // If one of the objects is null or undefined, they are not equal
         if (currentObj1 === null || currentObj2 === null) {
-            result.differences.push({ path, type: currentObj1 === null ? JsonDiffType.Removed : JsonDiffType.Added });
+            result.differences.push({ path, type: currentObj1 === null ? JsonDiffType.Added : JsonDiffType.Removed });
             return;
         }
         // If either object is array, we need to handle it differently
