@@ -20,6 +20,14 @@
       {
         "command": "jsonSemanticCompare.compareJson",
         "title": "Compare JSON Files"
+      },
+      {
+        "command": "jsonSemanticCompare.inspectPath",
+        "title": "Inspect JSON Path"
+      },
+      {
+        "command": "jsonSemanticCompare.openFileAtLine",
+        "title": "Open File at Line"
       }
     ],
     "menus": {
@@ -52,5 +60,8 @@
     "vscode": "^1.1.34",
     "webpack": "^5.0.0",
     "webpack-cli": "^4.0.0"
+  },
+  "dependencies": {
+    "jsonc-parser": "^3.3.1"
   }
 }
