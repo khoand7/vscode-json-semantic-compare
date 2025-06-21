@@ -1,8 +1,9 @@
-import {
-    visit
-} from 'jsonc-parser';
+import { visit } from 'jsonc-parser';
 
-import { Path, LineMap } from '../types/index';
+import { 
+    Path,
+    LineMap,
+} from '../types/index';
 
 // create a visit(jsonString) function that will call visit function of jsonc-parser
 export function collectLineMap(jsonString: string): LineMap {
@@ -38,6 +39,7 @@ export function collectLineMap(jsonString: string): LineMap {
         },
         onError(error, offset, length, startLine, startCharacter) {
             console.error(`Error: ${error} at offset ${offset}, length ${length}, startLine ${startLine}, startCharacter ${startCharacter}`);
+            throw new Error(`JSON parsing error: ${error} at line ${startLine + 1}, column ${startCharacter + 1}`);
         },
     });
     return lineMap;

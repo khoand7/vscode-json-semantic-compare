@@ -63,8 +63,12 @@ export class LineMap {
         this.map.set(key, { path, lineNumber, column });
     }
 
-    get(path: Path): LineMapEntry | undefined {
-        return this.map.get(path.toString());
+    get(path: Path | string): LineMapEntry | undefined {
+        if (typeof path === 'string') {
+            return this.map.get(path);
+        } else {
+            return this.map.get(path.toString());
+        }
     }
 
     has(path: Path | string): boolean {
