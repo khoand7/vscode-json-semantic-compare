@@ -20,6 +20,14 @@
       {
         "command": "jsonSemanticCompare.compareJson",
         "title": "Compare JSON Files"
+      },
+      {
+        "command": "jsonSemanticCompare.inspectPath",
+        "title": "Inspect JSON Path"
+      },
+      {
+        "command": "jsonSemanticCompare.openFileAtLine",
+        "title": "Open File at Line"
       }
     ],
     "menus": {

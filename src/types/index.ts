@@ -58,6 +58,10 @@ export class LineMap {
         this.map = new Map<string, LineMapEntry>();
     }
 
+    get size(): number {
+        return this.map.size;
+    }
+
     set(path: Path, lineNumber: number, column: number): void {
         const key = path.toString();
         this.map.set(key, { path, lineNumber, column });
