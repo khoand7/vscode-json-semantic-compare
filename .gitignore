@@ -27,3 +27,6 @@ yarn-error.log*
 # Coverage directory
 coverage/**
 .nyc_output/**
+
+# Packages
+*.vsix
