@@ -7,7 +7,6 @@ coverage/**
 .git/
 .gitignore
 .github/
-node_modules/
 *.map
 *.ts
 tsconfig.json
