@@ -69,11 +69,9 @@ export async function inspectPath(text: string) {
             html += `<ul>`;
             for (const entry of lineMap.entries()) {
                 const { path, lineNumber, column } = entry as LineMapEntry;
-                // Create a command URI for the link
-                const commandUri = `command:jsonSemanticCompare.openFileAtLine?${encodeURIComponent(JSON.stringify([filePath, lineNumber, column]))}`;
+                
                 html += `<li>
                     <b>Path:</b> ${path}, <b>Line:</b> ${lineNumber + 1}, <b>Column:</b> ${column + 1}
-                    <a href="${commandUri}" target="_blank">[Open]</a>
                 </li>`;
             }
             html += `</ul>`;

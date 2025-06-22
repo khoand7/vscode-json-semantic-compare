@@ -51,17 +51,6 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(inspectPathCommand);
 
-    const openFileAtLineCommand = vscode.commands.registerCommand('jsonSemanticCompare.openFileAtLine', async (filePath: string, line: number, column: number) => {
-        const uri = vscode.Uri.file(filePath);
-        const doc = await vscode.workspace.openTextDocument(uri);
-        const editor = await vscode.window.showTextDocument(doc);
-        const pos = new vscode.Position(line, column);
-        editor.selection = new vscode.Selection(pos, pos);
-        editor.revealRange(new vscode.Range(pos, pos), vscode.TextEditorRevealType.InCenter);
-    });
-
-    context.subscriptions.push(openFileAtLineCommand);
-
 }
 
 export function deactivate() {}
