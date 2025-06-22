@@ -2,7 +2,7 @@
   "name": "vscode-json-semantic-compare-knd",
   "displayName": "JSON Semantic Compare",
   "description": "A Visual Studio Code extension to compare JSON files semantically.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "khoand7",
   "repository": {
     "type": "git",
