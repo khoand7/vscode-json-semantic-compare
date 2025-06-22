@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { compareJson } from './commands/compareJson';
+import { compareJson, inspectPath } from './commands/compareJson';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -33,6 +33,24 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(compareJsonCommand);
+
+    // Register inspectPath command
+    const inspectPathCommand = vscode.commands.registerCommand('jsonSemanticCompare.inspectPath', async () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor || editor.document.languageId !== 'json') {
+            vscode.window.showErrorMessage('Please open a JSON file to inspect.');
+            return;
+        }
+        let text = editor.document.getText(editor.selection);
+        if (!text) {
+            text = editor.document.getText(); // If no selection, inspect the whole document
+        }
+
+        inspectPath(text);
+    });
+
+    context.subscriptions.push(inspectPathCommand);
+
 }
 
 export function deactivate() {}
