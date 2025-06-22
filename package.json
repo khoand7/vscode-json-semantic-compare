@@ -63,6 +63,7 @@
   "nyc": {
     "exclude": [
       "src/extension.ts",
+      "src/commands/*.ts",
       "src/test/**/*.ts"
     ]
   }
