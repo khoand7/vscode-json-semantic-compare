@@ -23,7 +23,7 @@ export interface JsonComparisonResult {
 
 // A class that wraps JSONPath and provides utility methods
 export class Path {
-    private path: string;
+    private readonly path: string;
 
     constructor(path: JSONPath = []) {
         // Create string from input JSONPath following the RFC 6901 specification
@@ -52,7 +52,7 @@ export interface LineMapEntry {
 }
 
 export class LineMap {
-    private map: Map<string, LineMapEntry>;
+    private readonly map: Map<string, LineMapEntry>;
 
     constructor() {
         this.map = new Map<string, LineMapEntry>();
