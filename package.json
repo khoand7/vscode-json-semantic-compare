@@ -2,7 +2,7 @@
   "name": "vscode-json-semantic-compare-knd",
   "displayName": "JSON Semantic Compare",
   "description": "A Visual Studio Code extension to compare JSON files semantically.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "khoand7",
   "repository": {
     "type": "git",
@@ -11,9 +11,7 @@
   "engines": {
     "vscode": "^1.50.0"
   },
-  "activationEvents": [
-
-  ],
+  "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
@@ -24,6 +22,14 @@
       {
         "command": "jsonSemanticCompare.inspectPath",
         "title": "Inspect JSON Path"
+      },
+      {
+        "command": "jsonSemanticCompare.jsonArrayToCsv",
+        "title": "JSON Array To CSV"
+      },
+      {
+        "command": "jsonSemanticCompare.csvToJsonArray",
+        "title": "CSV To JSON Array"
       }
     ],
     "menus": {
@@ -46,8 +52,10 @@
     "coverage": "nyc npm test && nyc report --reporter=lcov"
   },
   "devDependencies": {
+    "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",
     "@vscode/vsce": "^3.5.0",
+    "chai": "^5.2.0",
     "mocha": "^11.6.0",
     "nyc": "^17.1.0",
     "ts-loader": "^8.0.0",
@@ -58,7 +66,8 @@
     "webpack-cli": "^4.0.0"
   },
   "dependencies": {
-    "jsonc-parser": "^3.3.1"
+    "jsonc-parser": "^3.3.1",
+    "csv-stringify": "^6.5.2"
   },
   "nyc": {
     "exclude": [

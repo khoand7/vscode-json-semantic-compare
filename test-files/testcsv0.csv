@@ -1,0 +1,6 @@
+"name","age","city","isActive","tags"
+"A","30","Ho Chi Minh","1","[""developer"",""javascript""]"
+"B","25","Hanoi",,"[""designer"",""css""]"
+"C","28","Da Nang","1","[""developer"",""typescript""]"
+"D","35","Nha Trang",,
+"E","35","Nha Trang",,"{""test object"":""test value""}"
