@@ -17,19 +17,19 @@
     "commands": [
       {
         "command": "jsonSemanticCompare.compareJson",
-        "title": "Compare JSON Files"
+        "title": "JSON Tool: Compare JSON Files"
       },
       {
         "command": "jsonSemanticCompare.inspectPath",
-        "title": "Inspect JSON Path"
+        "title": "JSON Tool: Inspect JSON Path"
       },
       {
         "command": "jsonSemanticCompare.jsonArrayToCsv",
-        "title": "JSON Array To CSV"
+        "title": "JSON Tool: JSON Array To CSV"
       },
       {
         "command": "jsonSemanticCompare.csvToJsonArray",
-        "title": "CSV To JSON Array"
+        "title": "JSON Tool: CSV To JSON Array"
       }
     ],
     "menus": {
