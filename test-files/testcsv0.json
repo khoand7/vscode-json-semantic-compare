@@ -1,0 +1,36 @@
+[
+    {
+        "name": "A",
+        "age": 30,
+        "city": "Ho Chi Minh",
+        "isActive": true,
+        "tags": ["developer", "javascript"]
+    },
+    {
+        "name": "B",
+        "age": 25,
+        "city": "Hanoi",
+        "isActive": false,
+        "tags": ["designer", "css"]
+    },
+    {
+        "name": "C",
+        "age": 28,
+        "city": "Da Nang",
+        "isActive": true,
+        "tags": ["developer", "typescript"]
+    },
+    {       
+        "name": "D",
+        "age": 35,
+        "city": "Nha Trang",
+        "isActive": false
+    },
+    {       
+        "name": "E",
+        "age": 35,
+        "city": "Nha Trang",
+        "isActive": false,
+        "tags": {"test object": "test value"}
+    }
+]

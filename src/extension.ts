@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { compareJson, inspectPath } from './commands/compareJson';
+import { jsonArrayToCsv, csvToJsonArray } from './utils/jsonCsv';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -50,6 +51,69 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(inspectPathCommand);
+
+    // Register jsonArrayToCsv command
+    const jsonArrayToCsvCommand = vscode.commands.registerCommand('jsonSemanticCompare.jsonArrayToCsv', async () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor || editor.document.languageId !== 'json') {
+            vscode.window.showErrorMessage('Please open a JSON file to convert.');
+            return;
+        }
+        let text = editor.document.getText(editor.selection);
+        if (!text) {
+            text = editor.document.getText(); // If no selection, convert the whole document
+        }
+
+        const csvText = jsonArrayToCsv(text);
+        if (!csvText) {
+            vscode.window.showErrorMessage('Failed to convert JSON Array to CSV.');
+            return;
+        }
+        // Create a new untitled CSV file and write the CSV text to it
+        vscode.workspace.openTextDocument({ content: csvText, language: 'csv' }).then(doc => {
+            vscode.window.showTextDocument(doc).then(() => {
+                vscode.window.showInformationMessage('JSON Array successfully converted to CSV and opened in a new document.');
+            }, err => {
+                vscode.window.showErrorMessage(`Failed to open new CSV document: ${err.message}`);
+            });
+        }, err => {
+            vscode.window.showErrorMessage(`Failed to create new CSV document: ${err.message}`);
+        });
+    });
+
+    context.subscriptions.push(jsonArrayToCsvCommand);
+
+    // Register jsonArrayToCsv command
+    const csvToJsonArrayCommand = vscode.commands.registerCommand('jsonSemanticCompare.csvToJsonArray',  async () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            vscode.window.showErrorMessage('Please open a CSV file to convert.');
+            return;
+        }
+        let text = editor.document.getText(editor.selection);
+        if (!text) {
+            text = editor.document.getText(); // If no selection, convert the whole document
+        }
+
+        const jsonArray = csvToJsonArray(text);
+        if (!jsonArray) {
+            vscode.window.showErrorMessage('Failed to convert CSV to JSON Array.');
+            return;
+        }
+        // Create a new untitled JSON file and write the JSON text to it
+        vscode.workspace.openTextDocument({ content: JSON.stringify(jsonArray, null, 2), language: 'json' }).then(doc => {
+            vscode.window.showTextDocument(doc).then(() => {
+                vscode.window.showInformationMessage('CSV successfully converted to JSON Array and opened in a new document.');
+            }, err => {
+                vscode.window.showErrorMessage(`Failed to open new JSON document: ${err.message}`);
+            });
+        }, err => {
+            vscode.window.showErrorMessage(`Failed to create new JSON document: ${err.message}`);
+        });
+        
+    });
+
+    context.subscriptions.push(csvToJsonArrayCommand);
 
 }
 
